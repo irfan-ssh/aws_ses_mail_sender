@@ -48,7 +48,7 @@ def send_email():
     if failed_count > 0:
         messagebox.showerror("Error", f"{failed_count} emails failed to send.\n{error_message}")
     else:
-        messagebox.showinfo("Success", f"All {success_count} emails sent successfully!")
+        messagebox.showinfo("Success", f"{success_count} emails sent successfully!")
 
 def browse_file():
     file_path = filedialog.askopenfilename()
@@ -76,46 +76,56 @@ root.title("AWS SES MAILER")
 # Set minimum window size
 root.minsize(400, 400)
 
+# Configure AWS colors
+aws_blue = "#232F3E"
+aws_yellow = "#FF9900"
+aws_gray = "#131A22"
+aws_white = "#ffffff"
+aws_black = "#030202"
+
+# Set background color of the window
+root.config(bg=aws_blue)
+
 # Create and place widgets
-title_label = tk.Label(root, text="AWS SES MAILER", font=("Helvetica", 24, "bold"))
+title_label = tk.Label(root, text="AWS SES MAILER", font=("Helvetica", 16, "bold"), bg=aws_blue, fg=aws_yellow)
 title_label.grid(row=0, column=0, columnspan=3, pady=10)
 
-tk.Label(root, text="Region:").grid(row=1, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="Region:", bg=aws_blue, fg=aws_white).grid(row=1, column=0, padx=5, pady=5, sticky="w")
 region_entry = tk.Entry(root)
 region_entry.grid(row=1, column=1, padx=5, pady=5, sticky="we")
 
-tk.Label(root, text="AWS Access Key ID:").grid(row=2, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="AWS Access Key ID:", bg=aws_blue, fg=aws_white).grid(row=2, column=0, padx=5, pady=5, sticky="w")
 aws_access_key_id_entry = tk.Entry(root)
 aws_access_key_id_entry.grid(row=2, column=1, padx=5, pady=5, sticky="we")
 
-tk.Label(root, text="AWS Secret Access Key:").grid(row=3, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="AWS Secret Access Key:", bg=aws_blue, fg=aws_white).grid(row=3, column=0, padx=5, pady=5, sticky="w")
 aws_secret_access_key_entry = tk.Entry(root, show="*")
 aws_secret_access_key_entry.grid(row=3, column=1, padx=5, pady=5, sticky="we")
 
-tk.Label(root, text="Sender Email:").grid(row=4, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="Sender Email:", bg=aws_blue, fg=aws_white).grid(row=4, column=0, padx=5, pady=5, sticky="w")
 sender_entry = tk.Entry(root)
 sender_entry.grid(row=4, column=1, padx=5, pady=5, sticky="we")
 
 recipient_individual = tk.BooleanVar()
 recipient_file = tk.BooleanVar()
 
-individual_checkbox = tk.Checkbutton(root, text="Individual Recipient", variable=recipient_individual, command=select_individual)
+individual_checkbox = tk.Checkbutton(root, text="Individual Recipient", variable=recipient_individual, command=select_individual, bg=aws_blue)
 individual_checkbox.grid(row=5, column=0, padx=5, pady=5, sticky="w")
 recipient_entry = tk.Entry(root, state="disabled")
 recipient_entry.grid(row=5, column=1, padx=5, pady=5, sticky="we")
 
-file_checkbox = tk.Checkbutton(root, text="Multiple Recipients from File", variable=recipient_file, command=select_file)
+file_checkbox = tk.Checkbutton(root, text="Multiple Recipients from File", variable=recipient_file, command=select_file, bg=aws_blue)
 file_checkbox.grid(row=6, column=0, padx=5, pady=5, sticky="w")
 file_path_entry = tk.Entry(root, state="disabled")
 file_path_entry.grid(row=6, column=1, padx=5, pady=5, sticky="we")
-browse_button = tk.Button(root, text="Browse", command=browse_file, state="disabled")
+browse_button = tk.Button(root, text="Browse File", font=("Helvetica", 10, "bold"), command=browse_file, state="disabled", bg=aws_yellow, fg=aws_black)
 browse_button.grid(row=6, column=2, padx=5, pady=5, sticky="we")
 
-tk.Label(root, text="Subject:").grid(row=7, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="Subject:", bg=aws_blue, fg=aws_white).grid(row=7, column=0, padx=5, pady=5, sticky="w")
 subject_entry = tk.Entry(root)
 subject_entry.grid(row=7, column=1, padx=5, pady=5, sticky="we")
 
-tk.Label(root, text="Body:").grid(row=8, column=0, padx=5, pady=5, sticky="w")
+tk.Label(root, text="Body:", bg=aws_blue, fg=aws_white).grid(row=8, column=0, padx=5, pady=5, sticky="w")
 body_entry = scrolledtext.ScrolledText(root, height=10, width=40)
 body_entry.grid(row=8, column=1, padx=5, pady=5, sticky="we")
 
@@ -123,7 +133,7 @@ body_entry.grid(row=8, column=1, padx=5, pady=5, sticky="we")
 resize_grip = ttk.Sizegrip(root)
 resize_grip.grid(row=9, column=2, padx=5, pady=5, sticky="se")
 
-send_button = tk.Button(root, text="Send Email", command=send_email)
+send_button = tk.Button(root, text="Send Email", font=("Helvetica", 10, "bold"), command=send_email, bg=aws_yellow, fg=aws_black)
 send_button.grid(row=10, columnspan=2, padx=5, pady=5)
 
 # Allow resizing of text box
