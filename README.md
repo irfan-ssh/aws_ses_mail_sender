@@ -9,6 +9,7 @@ AWS SES Mailer is a Python script with a graphical user interface (GUI) built us
 - Easy-to-use GUI interface.
 - Customizable AWS SES credentials and email content.
 ![alt text](image.png)
+![alt text](image-1.png)
 ## Requirements
 - Python 3.x installed on your system.
 - Boto3 library installed (`pip install boto3`).
